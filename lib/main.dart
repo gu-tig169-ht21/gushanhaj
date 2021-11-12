@@ -32,14 +32,16 @@ class MainView extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.more_vert),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const SecondView()));
-            },
+            onPressed: () {},
           ),
         ],
       ),
       body: const Center(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SecondView()));
+        },
     );
   }
 }
