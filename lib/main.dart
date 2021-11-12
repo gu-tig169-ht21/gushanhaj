@@ -53,3 +53,6 @@ class SecondView extends StatelessWidget {
     );
   }
 }
+
+
+//Har haft problem med flutter hela dagen och har inte hunnit göra klart allt än
