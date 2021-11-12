@@ -36,7 +36,7 @@ class MainView extends StatelessWidget {
           ),
         ],
       ),
-      body: const Center(),
+      body: _list(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
@@ -44,6 +44,42 @@ class MainView extends StatelessWidget {
         },
     );
   }
+  Widget _list() {
+    return ListView(
+      children: [
+        _item('Write a book'),
+        _item('Do homework'),
+        _item('Cuddle with my cat'),
+        _item('Watch TV'),
+        _item('Cook some food'),
+      ],
+    );
+  }
+
+  Widget _item(strText) {
+    return ListTile(
+      leading: Icon(Icons.check_box_outline_blank),
+      title: Text(strText),
+      trailing: Icon(Icons.highlight_remove),
+    );
+  }
+}
+
+Widget _checkboxRow() {
+  return Container(
+    margin: EdgeInsets.only(top: 25, bottom: 50),
+    child: Row(
+      children: [
+        Checkbox(
+          value: false,
+          onChanged: (val) {},
+        ),
+        const Text('Write a book'),
+        Container(width: 250),
+        const Icon(Icons.close),
+      ],
+    ),
+  );
 }
 
 class SecondView extends StatelessWidget {
