@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -21,8 +20,6 @@ class MyApp extends StatelessWidget {
 class MainView extends StatelessWidget {
   const MainView({Key? key}) : super(key: key);
 
-  get colors => null;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,8 +39,11 @@ class MainView extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => SecondView()));
         },
+        child: const Icon(Icons.add, color: Colors.white, size: 42),
+      ),
     );
   }
+
   Widget _list() {
     return ListView(
       children: [
@@ -60,26 +60,9 @@ class MainView extends StatelessWidget {
     return ListTile(
       leading: Icon(Icons.check_box_outline_blank),
       title: Text(strText),
-      trailing: Icon(Icons.highlight_remove),
+      trailing: Icon(Icons.close),
     );
   }
-}
-
-Widget _checkboxRow() {
-  return Container(
-    margin: EdgeInsets.only(top: 25, bottom: 50),
-    child: Row(
-      children: [
-        Checkbox(
-          value: false,
-          onChanged: (val) {},
-        ),
-        const Text('Write a book'),
-        Container(width: 250),
-        const Icon(Icons.close),
-      ],
-    ),
-  );
 }
 
 class SecondView extends StatelessWidget {
@@ -87,10 +70,45 @@ class SecondView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text('TIG169 TODO')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(height: 20),
+            _addTask(),
+            Container(height: 20),
+            _addText(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _addTask() {
+    return Container(
+      margin: EdgeInsets.only(left: 16, right: 16),
+      child: TextField(
+        decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: 'What are you going to do?'),
+      ),
+    );
+  }
+
+  Widget _addText() {
+    return Row(
+      children: [
+        Container(
+          margin: EdgeInsets.only(left: 180),
+          child: Icon(Icons.add),
+        ),
+        Container(
+          margin: EdgeInsets.only(left: 5),
+          child: Text('Add'),
+        ),
+      ],
     );
   }
 }
-
-
-//Har haft problem med flutter hela dagen och har inte hunnit göra klart allt än
