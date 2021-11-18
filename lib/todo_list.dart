@@ -15,8 +15,7 @@ class ToDoList extends StatelessWidget {
 
   Widget _listItem(context, task) {
     return ListTile(
-      leading: TaskCB(),
-      //const Icon(Icons.check_box_outline_blank),
+      leading: const TaskCB(),
       title: Text(task.toDoText),
       trailing: const Icon(Icons.close),
       onTap: () {
