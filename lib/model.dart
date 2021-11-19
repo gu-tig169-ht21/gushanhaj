@@ -13,7 +13,7 @@ class ToDoItem {
 
 class MyState extends ChangeNotifier {
   final List<ToDoItem> _list = [];
-  int _filterBy = 3;
+  int _filterBy = 1;
 
   List<ToDoItem> get list => _list;
 
