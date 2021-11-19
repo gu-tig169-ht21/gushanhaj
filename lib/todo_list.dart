@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'model.dart';
 
 class ToDoList extends StatelessWidget {
-  final List<ToDoItem> list;
+  List<ToDoItem> list;
 
-  const ToDoList(this.list);
+  ToDoList(this.list);
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,34 @@ class ToDoList extends StatelessWidget {
   }
 
   Widget _listItem(context, task) {
-    return ListTile(
-      leading: const TaskCB(),
+    var state = Provider.of<MyState>(context, listen: false);
+    return CheckboxListTile(
       title: Text(task.toDoText),
-      trailing: const Icon(Icons.close),
-      onTap: () {
-        var state = Provider.of<MyState>(context, listen: false);
-        state.removeTask(task);
+      secondary: IconButton(
+        icon: const Icon(Icons.close),
+        onPressed: () {
+          var state = Provider.of<MyState>(context, listen: false);
+          state.removeTask(task);
+        },
+      ),
+      controlAffinity: ListTileControlAffinity.leading,
+      value: task.isDone,
+      onChanged: (value) {
+        state.isDone(task);
       },
     );
   }
 }
+//  Widget _listItem(context, task) {
+//    return ListTile(
+//      leading: ToDoCB(), //checkbox-som ligger i model
+//      leading: Icon(Icons.check_box_outline_blank),
+//      title: Text(task.toDoText),
+//      trailing: const Icon(Icons.close),
+//      onTap: () {
+//        var state = Provider.of<MyState>(context, listen: false);
+//        state.removeTask(task);
+//      },
+//    );
+//  }
+//}

@@ -2,14 +2,27 @@ import 'package:flutter/material.dart';
 
 class ToDoItem {
   String? toDoText;
+  bool isDone;
 
-  ToDoItem({this.toDoText});
+  ToDoItem({this.toDoText, this.isDone = false});
+
+  void toggleDone(ToDoItem task) {
+    isDone = !isDone;
+  }
 }
 
 class MyState extends ChangeNotifier {
   final List<ToDoItem> _list = [];
+  int _filterBy = 3;
 
   List<ToDoItem> get list => _list;
+
+  int get filterBy => _filterBy;
+
+  void setFilterBy(int filterBy) {
+    _filterBy = filterBy;
+    notifyListeners();
+  }
 
   void addTask(ToDoItem task) {
     _list.add(task);
@@ -20,26 +33,9 @@ class MyState extends ChangeNotifier {
     _list.remove(task);
     notifyListeners();
   }
-}
 
-class TaskCB extends StatefulWidget {
-  const TaskCB({Key? key}) : super(key: key);
-
-  @override
-  State<TaskCB> createState() => _TaskCBState();
-}
-
-class _TaskCBState extends State<TaskCB> {
-  bool? _taskBool = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Checkbox(
-        value: _taskBool,
-        onChanged: (value) {
-          setState(() {
-            _taskBool = value;
-          });
-        });
+  void isDone(ToDoItem task) {
+    task.toggleDone(task);
+    notifyListeners();
   }
 }

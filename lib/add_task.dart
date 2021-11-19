@@ -38,14 +38,13 @@ class SecondViewState extends State<SecondView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(height: 20),
-            //   TaskInputField(ToDoItem(toDoText: this.toDoText)),
-            Container(height: 20),
             TextField(
               controller: textEditingController,
               decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'What are you going to do?'),
             ),
+            Container(height: 20),
             addTask(),
           ],
         ),
