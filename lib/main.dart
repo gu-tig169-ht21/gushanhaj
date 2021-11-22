@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.indigo,
       ),
       home: const TodolistView(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
