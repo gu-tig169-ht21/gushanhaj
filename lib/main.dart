@@ -3,8 +3,10 @@ import './todo_list_view.dart';
 import 'model.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
   var state = MyState();
+  await state.getList();
+
   runApp(
     ChangeNotifierProvider(
       create: (context) => state,

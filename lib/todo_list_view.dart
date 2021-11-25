@@ -35,7 +35,7 @@ class TodolistView extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) =>
-                      SecondView(ToDoItem(toDoText: 'Something to do'))));
+                      SecondView(ToDoItem(toDoText: 'title'))));
           if (newToDo != null) {
             // Lägg till ny Task i ToDolistan
             Provider.of<MyState>(context, listen: false).addTask(newToDo);
