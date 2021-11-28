@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'api.dart';
 
 class ToDoItem {
-  String? id;
-  String? toDoText;
+  String id;
+  String toDoText;
   bool isDone;
 
-  ToDoItem({this.id, this.toDoText, this.isDone = false});
+  ToDoItem({required this.id, required this.toDoText, this.isDone = false});
 
-  void toggleDone(ToDoItem task) {
+  void changedCB(ToDoItem task) {
     isDone = !isDone;
   }
 
@@ -31,10 +31,9 @@ class ToDoItem {
 
 class MyState extends ChangeNotifier {
   List<ToDoItem> _list = [];
-  int _filterBy = 1;
+  int _filterBy = 0;
 
   List<ToDoItem> get list => _list;
-
   int get filterBy => _filterBy;
 
   Future getList() async {
@@ -54,13 +53,18 @@ class MyState extends ChangeNotifier {
   }
 
   void removeTask(ToDoItem task) async {
-    _list = await Api.deleteTask(task.id.toString());
+    _list = await Api.deleteTask(task.id);
+    notifyListeners();
+  }
+
+  void changedTask(ToDoItem task) async {
+    task.changedCB(task);
+    _list = await Api.changeTask(task.id, task);
     notifyListeners();
   }
 
   void isDone(ToDoItem task) async {
-    _list = await Api.changeTask(task.id.toString());
-//    task.toggleDone(task);
+    task.changedCB(task);
     notifyListeners();
   }
 }
