@@ -16,7 +16,10 @@ class TodolistView extends StatelessWidget {
         actions: [
           PopupMenuButton(
               onSelected: (int value) {
-                Provider.of<MyState>(context, listen: false).setFilterBy(value);
+                if (value != null) {
+                  Provider.of<MyState>(context, listen: false)
+                      .setFilterBy(value);
+                }
               },
               itemBuilder: (context) => [
                     const PopupMenuItem(child: Text('All'), value: 1),
@@ -35,7 +38,7 @@ class TodolistView extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) =>
-                      SecondView(ToDoItem(toDoText: 'Something to do'))));
+                      AddTask(ToDoItem(id: '', toDoText: 'message'))));
           if (newToDo != null) {
             // Lägg till ny Task i ToDolistan
             Provider.of<MyState>(context, listen: false).addTask(newToDo);
@@ -48,8 +51,11 @@ class TodolistView extends StatelessWidget {
 
   List<ToDoItem> _filterList(list, value) {
     if (value == 1) return list;
-    if (value == 2) return list.where((task) => task.isDone == true).toList();
-    if (value == 3) return list.where((task) => task.isDone == false).toList();
+    if (value == 2) {
+      return list.where((task) => task.isDone == true).toList();
+    } else if (value == 3) {
+      return list.where((task) => task.isDone == false).toList();
+    }
     return list;
   }
 }

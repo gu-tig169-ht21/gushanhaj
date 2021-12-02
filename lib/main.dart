@@ -3,8 +3,10 @@ import './todo_list_view.dart';
 import 'model.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
   var state = MyState();
+  await state.getList();
+
   runApp(
     ChangeNotifierProvider(
       create: (context) => state,
@@ -19,11 +21,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
       home: const TodolistView(),
-      debugShowCheckedModeBanner: false,
     );
   }
 }

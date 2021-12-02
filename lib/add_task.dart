@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
 import './model.dart';
 
-class SecondView extends StatefulWidget {
+class AddTask extends StatefulWidget {
   final ToDoItem task;
 
-  const SecondView(this.task);
+  const AddTask(this.task, {Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return SecondViewState(task);
+    return AddTaskState(task);
   }
 }
 
-class SecondViewState extends State<SecondView> {
-  String? toDoText;
-  late TextEditingController textEditingController;
+class AddTaskState extends State<AddTask> {
+  String toDoText = 'message';
+  TextEditingController textEditingController = TextEditingController();
 
-  SecondViewState(ToDoItem task) {
+  AddTaskState(ToDoItem task) {
     this.toDoText = task.toDoText;
-
-    textEditingController = TextEditingController();
 
     textEditingController.addListener(() {
       setState(() {
@@ -31,7 +29,7 @@ class SecondViewState extends State<SecondView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('TIG169 TODO')),
+      appBar: AppBar(centerTitle: true, title: const Text('TIG169 TODO')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -57,12 +55,31 @@ class SecondViewState extends State<SecondView> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton.icon(
-            onPressed: () {
-              Navigator.pop(context, ToDoItem(toDoText: toDoText));
-            },
-            icon: const Icon(Icons.add),
-            label: const Text('Add')),
+          label: const Text('Add'),
+          icon: const Icon(Icons.add),
+          onPressed: () {
+            Navigator.pop(context, ToDoItem(id: '', toDoText: toDoText));
+          },
+        ),
       ],
+    );
+  }
+}
+
+class InputTaskField extends StatelessWidget {
+  final ToDoItem task;
+
+  const InputTaskField(this.task, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(left: 16, right: 16),
+      child: const TextField(
+        decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: 'What are you going to do?'),
+      ),
     );
   }
 }
