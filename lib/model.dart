@@ -14,8 +14,8 @@ class ToDoItem {
 
   static Map<String, dynamic> toJson(ToDoItem task) {
     return {
-      'title': task.toDoText,
       'id': task.id,
+      'title': task.toDoText,
       'done': task.isDone,
     };
   }

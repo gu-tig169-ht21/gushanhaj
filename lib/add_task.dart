@@ -26,6 +26,7 @@ class AddTaskState extends State<AddTask> {
     });
   }
 
+//Uppbyggnaden av add_task-sidan med appbar, ruta med hint-text som användaren kan fylla i ny task
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +51,7 @@ class AddTaskState extends State<AddTask> {
     );
   }
 
+//användaren skapar en ny task och byter sida till första sidan med översikt på tasks med hjälp av navigator.pop
   Widget addTask() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
