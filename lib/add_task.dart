@@ -65,21 +65,3 @@ class AddTaskState extends State<AddTask> {
     );
   }
 }
-
-class InputTaskField extends StatelessWidget {
-  final ToDoItem task;
-
-  const InputTaskField(this.task, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(left: 16, right: 16),
-      child: const TextField(
-        decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: 'What are you going to do?'),
-      ),
-    );
-  }
-}
