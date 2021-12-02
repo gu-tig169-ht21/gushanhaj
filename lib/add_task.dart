@@ -29,7 +29,7 @@ class AddTaskState extends State<AddTask> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('TIG169 TODO')),
+      appBar: AppBar(centerTitle: true, title: const Text('TIG169 TODO')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
