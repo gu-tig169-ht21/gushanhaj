@@ -5,7 +5,8 @@ import 'package:provider/provider.dart';
 
 void main() async {
   var state = MyState();
-  await state.getList();
+  await state
+      .getList(); //hämta lista med befintliga todo's vid uppstart av appen
 
   runApp(
     ChangeNotifierProvider(

@@ -7,6 +7,7 @@ import './todo_list.dart';
 class TodolistView extends StatelessWidget {
   const TodolistView({Key? key}) : super(key: key);
 
+//Uppbyggnad av första sidan med lista av todo's och filtrering
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +29,7 @@ class TodolistView extends StatelessWidget {
                   ]),
         ],
       ),
+      //filtrering enligt values i _filterlist
       body: Consumer<MyState>(
         builder: (context, state, child) =>
             ToDoList(_filterList(state.list, state.filterBy)),
