@@ -7,7 +7,7 @@ import './todo_list.dart';
 class TodolistView extends StatelessWidget {
   const TodolistView({Key? key}) : super(key: key);
 
-//Uppbyggnad av första sidan med lista av todo's och filtrering
+//Uppbyggnad av första sidan med lista av todo's och filtrering, denna klass som kallas på vid home i main-filen
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +50,10 @@ class TodolistView extends StatelessWidget {
       ),
     );
   }
+
+  //value 1 = all tasks
+  //value 2 = done tasks
+  //value 3 = undone tasks
 
   List<ToDoItem> _filterList(list, value) {
     if (value == 1) return list;
